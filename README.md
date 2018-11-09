@@ -47,7 +47,6 @@
 		- Installing Docker-CE
 		- Creating and Building Hello World Container
 		- Creating and Building HTOP Container
-		- Copying Files
 
 
 ### 5- Docker Host ###
