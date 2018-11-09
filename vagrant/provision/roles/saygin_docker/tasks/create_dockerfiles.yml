@@ -1,5 +1,16 @@
 ---
 
+- name: Create Dockerfile Dir
+  raw: (mkdir -p /opt/dockersaygin/dockerfiles)
+  register: shell_output6
+  check_mode: no
+  ignore_errors: yes
+  changed_when: False
+
+- name: Create Dockerfile Dir Output
+  debug:
+    msg: "{{ shell_output6.stdout }}"
+
 - name: Create Dockerfile Hello
   raw: (echo "hello" > /opt/dockersaygin/context/hello && printf "FROM busybox\nCOPY /hello /\nRUN cat /hello" > /opt/dockersaygin/dockerfiles/Dockerfile_Hello)
   register: shell_output4
