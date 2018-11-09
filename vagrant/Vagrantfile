@@ -12,7 +12,8 @@ Vagrant.configure("2") do |config|
       vb.name = "saygin"
       vb.memory = "2048"
       vb.gui = true
-    sayk.vm.synced_folder "/vagrant/provision/roles/sayk_docker/files", "/opt/dockersaygin/context"
+    saygin.vm.synced_folder "/vagrant/provision/roles/saygin_docker/files", "/opt/dockersaygin/context"
+
   end
 
   #########################
