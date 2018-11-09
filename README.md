@@ -223,7 +223,26 @@
 
 	# Execute server_settings.sh with trace option
 
-		!!! root@saygin:/opt/dockersaygin# sh -x /opt/dockersaygin/files/server_settings.sh
+		root@saygin:/opt/dockersaygin# sh -x /opt/dockersaygin/context/server_settings.sh
+
+			+ docker inspect -f {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} server1
+			+ docker exec -it apache1 sh -c echo 172.17.0.3 server1 >> /etc/hosts
+			+ docker inspect -f {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} server2
+			+ docker exec -it apache1 sh -c echo 172.17.0.4 server2 >> /etc/hosts
+			+ docker exec -it apache1 sh -c echo Listen 8081 >> /etc/apache2/ports.conf
+			+ docker exec -it apache1 sh -c echo Listen 8082 >> /etc/apache2/ports.conf
+			+ docker cp /opt/dockersaygin/context/server1.conf apache1:/etc/apache2/sites-available/server1.conf
+			+ docker cp /opt/dockersaygin/context/server2.conf apache1:/etc/apache2/sites-available/server2.conf
+			+ docker exec -it apache1 a2ensite server1.conf
+			Enabling site server1.
+			To activate the new configuration, you need to run:
+			  service apache2 reload
+			+ docker exec -it apache1 a2ensite server2.conf
+			Enabling site server2.
+			To activate the new configuration, you need to run:
+ 			 service apache2 reload
+			+ docker exec -it apache1 service apache2 reload
+			 * Reloading Apache httpd web server apache2                                     * 
 
 	PS: To check server_settings.sh on apache1
 
@@ -292,7 +311,7 @@
 
 	# Execute monitor.sh. For every 1 Second. That may take a time because of lack of logs.
 
-		root@saygin:/opt/dockersaygin# sh /opt/dockersaygin/files/monitor.sh
+		root@saygin:/opt/dockersaygin# sh /opt/dockersaygin/context/monitor.sh
 
 		Active Internet connections (w/o servers)
 		Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
