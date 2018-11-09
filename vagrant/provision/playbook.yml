@@ -1,0 +1,7 @@
+---
+
+- name: Saygin 
+  hosts: all 
+  become: yes
+  roles: 
+  - saygin_docker

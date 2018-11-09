@@ -1,0 +1,25 @@
+---
+
+- name: Install Docker-CE
+  raw: (curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && apt-key fingerprint 0EBFCD88 && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && apt -y update && apt install -y docker-ce)
+  register: shell_output2
+  check_mode: no
+  ignore_errors: yes
+  changed_when: False
+
+
+- name: Install Docker-CE Output
+  debug:
+    msg: "{{ shell_output2.stdout }}"
+
+
+- name: Run Docker Hello World
+  raw: (docker run hello-world)
+  register: shell_output3
+  check_mode: no
+  ignore_errors: yes
+  changed_when: False
+
+- name: Run Docker Hello World Output
+  debug:
+    msg: "{{ shell_output3.stdout }}"

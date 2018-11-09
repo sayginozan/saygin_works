@@ -1,0 +1,33 @@
+  ####### Ubuntu #######
+
+Vagrant.configure("2") do |config|
+  config.vm.define "saygin" do |saygin|
+    saygin.vm.box = "ubuntu/xenial64"
+    saygin.vm.network "public_network"
+    #saygin.vm.network "private_network", ip: "192.168.178.3"    
+    saygin.vm.network "forwarded_port", guest: 80, host: 8080
+    saygin.vm.hostname = "saygin"
+    saygin.ssh.forward_agent = true
+    saygin.ssh.port = 2222    
+    saygin.vm.provider "virtualbox" do |vb|
+      vb.name = "saygin"
+      vb.memory = "2048"
+      vb.gui = true
+    saygin.vm.provision "file", source:"/vagrant/provision/roles/saygin_docker/files", destination: "/opt/dockersaygin/context"
+  end
+
+  #########################
+
+  ####### Provision #######
+
+  saygin.vm.provision "ansible_local" do |ansible|
+      ansible.playbook = "provision/playbook.yml"
+      ansible.verbose = true
+      ansible.limit = "all"
+  end
+
+  #########################
+
+  end
+
+end

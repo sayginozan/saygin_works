@@ -1,0 +1,12 @@
+---
+
+- name: Install Packages
+  raw: (apt -y update && apt install -y python-minimal vim htop ifstat sysstat apache2 vnstat tree apt-transport-https ca-certificates curl software-properties-common docker-compose tcpdump iftop)
+  register: shell_output1
+  check_mode: no
+  ignore_errors: yes
+  changed_when: False
+
+- name: Install Packages Output
+  debug:
+    msg: "{{ shell_output1.stdout }}"

@@ -1,0 +1,45 @@
+---
+
+- name: Create Dockerfile Hello
+  raw: (echo "hello" > /opt/dockersaygin/context/hello && printf "FROM busybox\nCOPY /hello /\nRUN cat /hello" > /opt/dockersaygin/dockerfiles/Dockerfile_Hello)
+  register: shell_output4
+  check_mode: no
+  ignore_errors: yes
+  changed_when: False
+
+- name: Create Dockerfile Hello Output
+  debug:
+    msg: "{{ shell_output4.stdout }}"
+
+- name: Build Dockerfile Hello
+  raw: (docker build --no-cache -t hello:v1 -f /opt/dockersaygin/dockerfiles/Dockerfile_Hello /opt/dockersaygin/context)
+  register: shell_output5
+  check_mode: no
+  ignore_errors: yes
+  changed_when: False
+
+- name: Build Dockerfile Hello Output
+  debug:
+    msg: "{{ shell_output5.stdout }}"
+
+- name: Create Dockerfile HTOP
+  raw: (printf "FROM alpine\nRUN apk add --update --no-cache htop && rm -f /tmp/* /etc/apk/cache/*\nENTRYPOINT [\"htop\"]" > /opt/dockersaygin/dockerfiles/Dockerfile_HTOP)
+  register: shell_output7
+  check_mode: no
+  ignore_errors: yes
+  changed_when: False
+
+- name: Create Dockerfile HTOP Output
+  debug:
+    msg: "{{ shell_output7.stdout }}"
+
+- name: Build Dockerfile HTOP
+  raw: (docker build --no-cache -t htop:v1 -f /opt/dockersaygin/dockerfiles/Dockerfile_HTOP /opt/dockersaygin/context)
+  register: shell_output8
+  check_mode: no
+  ignore_errors: yes
+  changed_when: False
+
+- name: Build Dockerfile HTOP Output
+  debug:
+    msg: "{{ shell_output8.stdout }}"
