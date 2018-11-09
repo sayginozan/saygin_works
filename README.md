@@ -27,7 +27,6 @@
 	│           │   ├── server2.conf
 	│           │   └── server_settings.sh
 	│           └── tasks
-	│               ├── transfer_files.yml
 	│               ├── create_dockerfiles.yml
 	│               ├── install_docker.yml
 	│               ├── install_packages.yml
@@ -53,7 +52,6 @@
 
 ### 5- Docker Host ###
 
-
 ### 5.1- Connection Docker Host ###
 		
 	# vagrant ssh
@@ -75,8 +73,6 @@
 	└── dockerfiles
 	    └── Dockerfile_Hello
 	    └── Dockerfile_HTOP
-
-	PS: Contents of "/opt/dockersaygin" is generated automatically by ansible.
 
 
 ### 5.2- Check Docker Host Web Service ###
