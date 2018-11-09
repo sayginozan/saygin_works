@@ -42,7 +42,7 @@
 
 	PS: playbook outputs:  
 
-		- Creating OS (also on VB Gui)
+		- Creating OS (with VB Gui)
 		- Installing Packages in "install_packages.yml"
 		- Installing Docker-CE
 		- Creating and Building Hello World Container
