@@ -183,7 +183,7 @@
 	# To Exit CTRL-P + CTRL-Q (leaving container running in the background)
 		
 
-	PS: Forwarded ports 8081,8082 on Apache Client Server Containers are mapped ports 8081,8082 on Docker Host
+	PS: Forwarded port 80 on Apache Client Server Containers are mapped ports 8081,8082 on Docker Host
 
 
 ### 6.3- Check Running Containers ###
@@ -242,6 +242,8 @@
  			 service apache2 reload
 			+ docker exec -it apache1 service apache2 reload
 			 * Reloading Apache httpd web server apache2                                     * 
+
+
 
 	PS: To check server_settings.sh on apache1
 
@@ -320,6 +322,7 @@
 		  Count IP
 		      2 192.168.178.11
 		      1 10.0.2.2
+
 
 
 	PS: To check monitor.sh on apache1
