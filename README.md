@@ -77,6 +77,9 @@
 
 ### 5.2- Check Docker Host Web Service ###
 	
+	root@saygin:/home/vagrant# echo DOCKER HOST > /var/www/html/index.html
+	root@saygin:/home/vagrant# service apache2 restart
+	
 	root@saygin:/home/vagrant# ifconfig -a
 
 	http://public_network_IP
@@ -89,7 +92,7 @@
 
 	# List All Containers
 
-		root@saygin:/opt/dockersaygin# docker container ls -a
+		root@saygin:/opt/dockersaygin# docker container ps -a
 
 		CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                         PORTS                                                                  NAMES
 		e08593618982        hello-world         "/hello"                 19 hours ago        Exited (0) 19 hours ago                                                                          
@@ -139,7 +142,9 @@
 	
 		# Execute Commands on apache1
 
-			# apt -y update && apt install -y apache2 nano tcpdump && a2enmod proxy && a2enmod proxy_http && service apache2 restart
+			# apt -y update && apt install -y apache2 nano tcpdump && a2enmod proxy && a2enmod proxy_http
+			# echo APACHE 1 > /var/www/html/index.html 
+			# service apache2 restart
 
 	# To Exit CTRL-P + CTRL-Q (leaving container running in the background)
 
